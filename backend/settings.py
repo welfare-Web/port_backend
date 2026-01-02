@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-78=jnn_xpzmzsa6d%nl6%qgn0o)$o^d(8^q=8y+j5#pdz-6q_g
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "your-backend.onrender.com"
+    "https://port-backend-5np3.onrender.com"
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -156,3 +156,4 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 #weladmin
 
 #weltech@890
+
