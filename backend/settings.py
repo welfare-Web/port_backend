@@ -12,7 +12,19 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
-    
+# Source - https://stackoverflow.com/a
+# Posted by Bambier, modified by community. See post 'Timeline' for change history
+# Retrieved 2026-01-03, License - CC BY-SA 4.0
+
+# <myproject/setting.py>
+from .DEFAULT import DEFAULT_HEADERS
+
+...
+CORS_ALLOW_HEADERS = DEFAULT_HEADERS 
+
+
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -70,27 +82,6 @@ CORS_ALLOW_CREDENTIALS = True
 
 
 
-# Allow common headers used by fetch
-CORS_ALLOW_HEADERS = [
-    "accept",
-    "accept-encoding",
-    "authorization",
-    "content-type",
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
-]
-
-CORS_ALLOW_METHODS = [
-    "GET",
-    "POST",
-    "PUT",
-    "PATCH",
-    "DELETE",
-    "OPTIONS",
-]
 CSRF_TRUSTED_ORIGINS = [
     "https://welfare-healthtech.vercel.app",
 ]
@@ -192,6 +183,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 #weladmin
 
 #weltech@890
+
 
 
 
