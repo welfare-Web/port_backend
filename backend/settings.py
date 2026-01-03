@@ -40,7 +40,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "port-backend-5np3.onrender.com",
-    "welfare-healthtech.vercel.app",
     "127.0.0.1",
     "localhost",
 ]
@@ -76,10 +75,10 @@ CORS_ORIGIN_WHITELIST = [
     'https://welfare-healthtech.vercel.app',
 ]
 
-CORS_ORIGIN_ALLOW_ALL=True
-CORS_ALLOW_CREDENTIALS = True
-
-
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    "https://welfare-healthtech.vercel.app",
+]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://welfare-healthtech.vercel.app",
@@ -182,6 +181,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 #weladmin
 
 #weltech@890
+
 
 
 
