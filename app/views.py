@@ -6,6 +6,7 @@ from django.conf import settings
 @api_view(['POST'])
 def contact_form(request):
     try:
+        
         name = request.data.get('name')
         email = request.data.get('email')
         phone = request.data.get('phone')
@@ -175,3 +176,4 @@ def contact_form(request):
             {"status": "error", "message": "Server error"},
             status=500
         )
+
