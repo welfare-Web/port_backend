@@ -32,14 +32,7 @@ ALLOWED_HOSTS = [
     "welfare-healthtech.vercel.app",
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "https://welfare-healthtech.vercel.app",
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    "https://welfare-healthtech.vercel.app",
-]
-
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_HEADERS = [
     "content-type",
     "authorization",
@@ -176,6 +169,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 #weladmin
 
 #weltech@890
+
 
 
 
