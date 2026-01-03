@@ -6,7 +6,7 @@ from django.conf import settings
 from .serializers import ContactSerializer
 
 
-@api_view(["POST"])
+@api_view(["POST","OPTIONS"])
 def contact_api(request):
     serializer = ContactSerializer(data=request.data)
 
@@ -50,3 +50,4 @@ Message:
         {"status": "success"},
         status=status.HTTP_200_OK
     )
+
