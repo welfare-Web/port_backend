@@ -34,10 +34,12 @@ ALLOWED_HOSTS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173/",
     "https://your-frontend.vercel.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173/",
     "https://your-frontend.vercel.app",
 ]
 
@@ -163,6 +165,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 #weladmin
 
 #weltech@890
+
 
 
 
