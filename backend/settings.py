@@ -36,17 +36,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-78=jnn_xpzmzsa6d%nl6%qgn0o)$o^d(8^q=8y+j5#pdz-6q_g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "port-backend-5np3.onrender.com",
-    "127.0.0.1",
-    "localhost",
 ]
-
-
-
-# Application definition
 
 INSTALLED_APPS = [
     "corsheaders",
@@ -61,7 +55,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",            # <- MUST be first (or very near top)
+    "corsheaders.middleware.CorsMiddleware",  # MUST be first
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -71,15 +65,34 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-CORS_ORIGIN_WHITELIST = [
-    'https://welfare-healthtech.vercel.app',
-]
-
+# ✅ CORS — PRODUCTION SAFE
 CORS_ALLOW_ALL_ORIGINS = False
+
 CORS_ALLOWED_ORIGINS = [
     "https://welfare-healthtech.vercel.app",
 ]
 
+CORS_ALLOW_CREDENTIALS = False
+
+# ✅ Required for POST
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "OPTIONS",
+]
+
+# ✅ CSRF
 CSRF_TRUSTED_ORIGINS = [
     "https://welfare-healthtech.vercel.app",
 ]
@@ -181,6 +194,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 #weladmin
 
 #weltech@890
+
 
 
 
