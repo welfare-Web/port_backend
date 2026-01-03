@@ -16,14 +16,6 @@ import os
 # Posted by Bambier, modified by community. See post 'Timeline' for change history
 # Retrieved 2026-01-03, License - CC BY-SA 4.0
 
-# <myproject/setting.py>
-from .DEFAULTS import DEFAULT_HEADERS
-
-CORS_ALLOW_HEADERS = DEFAULT_HEADERS 
-
-
-
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,6 +32,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     "port-backend-5np3.onrender.com",
+    ".onrender.com", # Allows all render subdomains
+    "welfare-healthtech.vercel.app",
 ]
 
 INSTALLED_APPS = [
@@ -55,10 +49,11 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",  # MUST be first
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",# MUST be first
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
+   
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -71,6 +66,7 @@ CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     "https://welfare-healthtech.vercel.app",
 ]
+APPEND_SLASH = False
 
 CORS_ALLOW_CREDENTIALS = False
 
@@ -194,6 +190,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 #weladmin
 
 #weltech@890
+
 
 
 
