@@ -28,21 +28,16 @@ SECRET_KEY = 'django-insecure-78=jnn_xpzmzsa6d%nl6%qgn0o)$o^d(8^q=8y+j5#pdz-6q_g
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
     "port-backend-5np3.onrender.com",
+    "welfare-healthtech.vercel.app",
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "https://your-frontend.vercel.app",
+    "https://welfare-healthtech.vercel.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "https://your-frontend.vercel.app",
+    "https://welfare-healthtech.vercel.app",
 ]
 
 CORS_ALLOW_HEADERS = [
@@ -93,7 +88,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 
-CORS_ALLOW_ALL_ORIGINS = True
+
 
 TEMPLATES = [
     {
@@ -181,6 +176,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 #weladmin
 
 #weltech@890
+
 
 
 
