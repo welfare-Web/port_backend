@@ -30,22 +30,10 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "port-backend-5np3.onrender.com",
     "welfare-healthtech.vercel.app",
+    "127.0.0.1",
+    "localhost",
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_HEADERS = [
-    "content-type",
-    "authorization",
-]
-
-CORS_ALLOW_METHODS = [
-    "GET",
-    "POST",
-    "PUT",
-    "PATCH",
-    "DELETE",
-    "OPTIONS",
-]
 
 
 # Application definition
@@ -63,7 +51,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",            # <- MUST be first (or very near top)
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -72,6 +60,37 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+
+
+
+# Allow common headers used by fetch
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
+]
+CSRF_TRUSTED_ORIGINS = [
+    "https://welfare-healthtech.vercel.app",
+]
+
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -169,6 +188,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 #weladmin
 
 #weltech@890
+
 
 
 
