@@ -5,19 +5,18 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .serializers import ContactSerializer
 
+
 @api_view(["POST"])
 def contact_api(request):
     serializer = ContactSerializer(data=request.data)
 
     if not serializer.is_valid():
-        return Response(
-            {"status": "error", "errors": serializer.errors},
-            status=status.HTTP_400_BAD_REQUEST
-        )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    # ✅ Save contact first (fast, safe)
     contact = serializer.save()
 
-    # 🚫 NEVER LET EMAIL CRASH THE API
+    # 🚫 NEVER block API for email
     try:
         send_mail(
             subject="New Contact Message",
@@ -31,7 +30,7 @@ Message:
 """,
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[settings.EMAIL_HOST_USER],
-            fail_silently=False,
+            fail_silently=True,  # 🔥 CRITICAL
         )
 
         send_mail(
@@ -39,18 +38,15 @@ Message:
             message="We received your message and will contact you shortly.",
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[contact.email],
-            fail_silently=False,
+            fail_silently=True,  # 🔥 CRITICAL
         )
 
     except Exception as e:
-        # 🔥 THIS IS THE KEY LINE
-        return Response(
-            {
-                "status": "error",
-                "message": "Email failed",
-                "details": str(e)
-            },
-            status=status.HTTP_200_OK  # 👈 NOT 500
-        )
+        # ❌ Do NOT crash API
+        print("Email error:", e)
 
-    return Response({"status": "success"}, status=status.HTTP_200_OK)
+    # ✅ ALWAYS return success fast
+    return Response(
+        {"status": "success"},
+        status=status.HTTP_200_OK
+    )
