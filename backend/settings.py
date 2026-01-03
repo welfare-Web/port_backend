@@ -17,7 +17,7 @@ import os
 # Retrieved 2026-01-03, License - CC BY-SA 4.0
 
 # <myproject/setting.py>
-from .DEFAULT import DEFAULT_HEADERS
+from .DEFAULTS import DEFAULT_HEADERS
 
 CORS_ALLOW_HEADERS = DEFAULT_HEADERS 
 
@@ -182,6 +182,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 #weladmin
 
 #weltech@890
+
 
 
 
