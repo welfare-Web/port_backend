@@ -1,11 +1,12 @@
 from rest_framework.decorators import api_view
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework import status
 from django.core.mail import send_mail
 from django.conf import settings
 from .serializers import ContactSerializer
 
-
+@csrf_exempt
 @api_view(["POST","OPTIONS"])
 def contact_api(request):
     serializer = ContactSerializer(data=request.data)
@@ -50,4 +51,5 @@ Message:
         {"status": "success"},
         status=status.HTTP_200_OK
     )
+
 
