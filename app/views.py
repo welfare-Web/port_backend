@@ -78,20 +78,24 @@ import os
 from .serializers import ContactSerializer
 
 
-def send_email(to_email, subject, content):
+def send_template_email(to_email, template_id, data):
     try:
         message = Mail(
-            from_email=("cybermohanr07@gmail.com", "Welfare Healthtec"),
+            from_email="cybermohanr07@gmail.com",  # VERIFIED sender
             to_emails=to_email,
-            subject=subject,
-            html_content=content,
         )
 
-        sg = SendGridAPIClient(os.getenv("SENDGRID_API_KEY"))
-        sg.send(message)
+        message.template_id = template_id
+        message.dynamic_template_data = data
+
+        sg = SendGridAPIClient(os.environ["SENDGRID_API_KEY"])
+        response = sg.send(message)
+
+        print("SendGrid status:", response.status_code)
 
     except Exception as e:
-        print("Email failed:", e)  # never crash API
+        print("Email failed:", e)
+  # never crash API
 
 
 @csrf_exempt
@@ -101,30 +105,31 @@ def contact_api(request):
     serializer.is_valid(raise_exception=True)
     contact = serializer.save()
 
-    # 1️⃣ Email to CUSTOMER
-    send_email(
+    # 1️⃣ CUSTOMER EMAIL
+    send_template_email(
         to_email=contact.email,
         template_id=os.getenv("SENDGRID_CUSTOMER_TEMPLATE_ID"),
         data={
-        "name": contact.name,
-        "email": contact.email,
-        "phone": contact.phone,
-    }
+            "name": contact.name,
+            "email": contact.email,
+            "phone": contact.phone,
+        }
     )
 
-    # 2️⃣ Email to ADMIN
-    send_email(
-       to_email=os.getenv("ADMIN_EMAIL"),
+    # 2️⃣ ADMIN EMAIL
+    send_template_email(
+        to_email=os.getenv("ADMIN_EMAIL"),
         template_id=os.getenv("SENDGRID_ADMIN_TEMPLATE_ID"),
         data={
-        "name": contact.name,
-        "email": contact.email,
-        "phone": contact.phone,
-        "message": contact.message,
-    }
+            "name": contact.name,
+            "email": contact.email,
+            "phone": contact.phone,
+            "message": contact.message,
+        }
     )
 
     return Response({"status": "success"}, status=200)
+
 
 
 
