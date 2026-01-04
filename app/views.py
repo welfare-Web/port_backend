@@ -104,27 +104,28 @@ def contact_api(request):
     # 1️⃣ Email to CUSTOMER
     send_email(
         to_email=contact.email,
-        subject="We received your message",
-        content=f"""
-        <p>Hi {contact.name},</p>
-        <p>Thank you for contacting Welfare Healthtech.</p>
-        <p>Our team will get back to you shortly.</p>
-        """
+        template_id=os.getenv("SENDGRID_CUSTOMER_TEMPLATE_ID"),
+        data={
+        "name": contact.name,
+        "email": contact.email,
+        "phone": contact.phone,
+    }
     )
 
     # 2️⃣ Email to ADMIN
     send_email(
-        to_email=os.getenv("ADMIN_EMAIL"),
-        subject="New Contact Form Submission",
-        content=f"""
-        <p><b>Name:</b> {contact.name}</p>
-        <p><b>Email:</b> {contact.email}</p>
-        <p><b>Phone:</b> {contact.phone}</p>
-        <p><b>Message:</b><br>{contact.message}</p>
-        """
+       to_email=os.getenv("ADMIN_EMAIL"),
+        template_id=os.getenv("SENDGRID_ADMIN_TEMPLATE_ID"),
+        data={
+        "name": contact.name,
+        "email": contact.email,
+        "phone": contact.phone,
+        "message": contact.message,
+    }
     )
 
     return Response({"status": "success"}, status=200)
+
 
 
 
