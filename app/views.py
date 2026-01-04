@@ -81,7 +81,7 @@ from .serializers import ContactSerializer
 def send_email(to_email, subject, content):
     try:
         message = Mail(
-            from_email=("noreply@welfarehealthtech.com", "Welfare Healthtech"),
+            from_email=("cybermohanr07@gmail.com", "Welfare Healthtec"),
             to_emails=to_email,
             subject=subject,
             html_content=content,
@@ -125,6 +125,7 @@ def contact_api(request):
     )
 
     return Response({"status": "success"}, status=200)
+
 
 
 
