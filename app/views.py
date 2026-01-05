@@ -81,7 +81,7 @@ from .serializers import ContactSerializer
 def send_template_email(to_email, template_id, data):
     try:
         message = Mail(
-            from_email="cybermohanr07@gmail.com",  # VERIFIED sender
+            from_email="tlepubwelfare@gmail.com",  # VERIFIED sender
             to_emails=to_email,
         )
 
@@ -129,6 +129,7 @@ def contact_api(request):
     )
 
     return Response({"status": "success"}, status=200)
+
 
 
 
